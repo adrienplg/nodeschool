@@ -1,0 +1,51 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'adduser' ]
+2 info using npm@3.7.3
+3 info using node@v4.3.1
+4 verbose adduser before first PUT { _id: 'org.couchdb.user:adrienplg',
+4 verbose adduser   name: 'adrienplg',
+4 verbose adduser   password: 'XXXXX',
+4 verbose adduser   email: 'adrienplg@gmail.com',
+4 verbose adduser   type: 'user',
+4 verbose adduser   roles: [],
+4 verbose adduser   date: '2016-12-22T14:19:50.559Z' }
+5 verbose request uri https://registry.npmjs.org/-/user/org.couchdb.user:adrienplg
+6 verbose request new user, so can't send auth
+7 info attempt registry request try #1 at 6:19:50 AM
+8 verbose request id e1ec0856750b55bd
+9 http request PUT https://registry.npmjs.org/-/user/org.couchdb.user:adrienplg
+10 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+11 info attempt registry request try #2 at 6:20:00 AM
+12 http request PUT https://registry.npmjs.org/-/user/org.couchdb.user:adrienplg
+13 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+14 info attempt registry request try #3 at 9:20:54 AM
+15 http request PUT https://registry.npmjs.org/-/user/org.couchdb.user:adrienplg
+16 verbose request invalidating /Users/adrienpouligny/.npm/registry.npmjs.org/-/user/org.couchdb.user_3Aadrienplg on PUT
+17 verbose adduser back [ { [Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443]
+17 verbose adduser     code: 'ENOTFOUND',
+17 verbose adduser     errno: 'ENOTFOUND',
+17 verbose adduser     syscall: 'getaddrinfo',
+17 verbose adduser     hostname: 'registry.npmjs.org',
+17 verbose adduser     host: 'registry.npmjs.org',
+17 verbose adduser     port: 443 },
+17 verbose adduser   undefined,
+17 verbose adduser   undefined ]
+18 verbose stack Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+18 verbose stack     at errnoException (dns.js:26:10)
+18 verbose stack     at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)
+19 verbose cwd /Users/adrienpouligny/Documents/sandbox/nodeschool/howtonpm
+20 error Darwin 15.6.0
+21 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "adduser"
+22 error node v4.3.1
+23 error npm  v3.7.3
+24 error code ENOTFOUND
+25 error errno ENOTFOUND
+26 error syscall getaddrinfo
+27 error network getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+28 error network This is most likely not a problem with npm itself
+28 error network and is related to network connectivity.
+28 error network In most cases you are behind a proxy or have bad network settings.
+28 error network
+28 error network If you are behind a proxy, please make sure that the
+28 error network 'proxy' config is set properly.  See: 'npm help config'
+29 verbose exit [ 1, true ]

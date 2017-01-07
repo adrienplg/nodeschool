@@ -190,23 +190,47 @@ var httpUpperCaserer = function () {
 
 var url = require('url')
 
+function parsetime (time) {
+  return {
+    hour: time.getHours(),
+    minute: time.getMinutes(),
+    second: time.getSeconds()
+  }
+}
+
+function unixtime (time) {
+  return { unixtime: time.getTime() }
+}
+
 var httpJsonApiServer = function () {
   var port = process.argv[2]
   var server = http.createServer(function (req, res) {
     if (req.method !== 'GET') {
       return res.end('send me a GET\n')
     }
-    res.writeHead(200, { 'Content-Type': 'application/json' })
-    parsedUrl = url.parse(req.url, true)
-    reqTime = parsedUrl.query.iso
+    var parsedUrl = url.parse(req.url, true)
+    var reqTime = parsedUrl.query.iso
+    var time = new Date(reqTime)
+    var result
+
     if (parsedUrl.pathname === '/api/parsetime') {
-      var date = new Date(reqTime).toISOString()
-      res.write(date)
-      res.end()
+      result = parsetime(time)
+    } else if (parsedUrl.pathname === '/api/unixtime') {
+      result = unixtime(time)
     }
-    if (parsedUrl.pathname === '/api/unixtime') {
-      var date = new Date(reqTime).toISOString()
-      res.write(date)
+
+    // Same thing with regexps
+    // if (/^\/api\/parsetime/.test(req.url)) {
+    //   result = parsetime(time)
+    // } else if (/^\/api\/unixtime/.test(req.url)) {
+    //   result = unixtime(time)
+    // }
+
+    if (result) {
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify(result))
+    } else {
+      res.writeHead(404)
       res.end()
     }
   })
